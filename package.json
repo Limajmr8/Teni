@@ -1,0 +1,31 @@
+{
+  "name": "bazar",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "type-check": "turbo run type-check",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
+    "web": "turbo run dev --filter=web",
+    "warehouse": "turbo run dev --filter=warehouse",
+    "admin": "turbo run dev --filter=admin",
+    "mobile": "turbo run dev --filter=mobile"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5"
+  },
+  "packageManager": "npm@10.5.0",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
