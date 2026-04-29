@@ -1,34 +1,10 @@
-// ============================================================
-// BAZAR — Shared TypeScript Types
-// All monetary values in PAISE (integer). Never use floats for money.
-// Phone numbers in E.164 format: +91XXXXXXXXXX
-// ============================================================
-
-// ── Utility Types ────────────────────────────────────────
-
-/** Paise value (integer). ₹1 = 100 paise. Never store as float. */
 export type Paise = number;
-
-/** ISO 8601 datetime string */
-export type ISODate = string;
-
-/** E.164 phone number e.g. +919876543210 */
 export type E164Phone = string;
 
-// ── Roles ────────────────────────────────────────────────
-
-export type UserRole =
-  | 'buyer'
-  | 'seller'
-  | 'runner'
-  | 'warehouse_staff'
-  | 'admin';
-
-// ── Delivery Address ─────────────────────────────────────
+export type UserRole = 'buyer' | 'seller' | 'runner' | 'warehouse_staff' | 'admin';
 
 export interface DeliveryAddress {
   name: string;
-  /** E.164 phone number */
   phone: E164Phone;
   line1: string;
   locality: string;
@@ -37,290 +13,167 @@ export interface DeliveryAddress {
   lng: number;
 }
 
-// ── Town ─────────────────────────────────────────────────
-
 export interface Town {
   id: string;
   name: string;
   state: string;
-  lat: number;
-  lng: number;
-  subdomain: string | null;
-  dark_store_lat: number | null;
-  dark_store_lng: number | null;
-  delivery_radius_km: number;
-  operating_hours_json: { open: string; close: string };
-  is_active: boolean;
-  launch_date: string | null;
-  created_at: ISODate;
+  lat?: number;
+  lng?: number;
+  subdomain?: string;
+  darkStoreLat?: number;
+  darkStoreLng?: number;
+  deliveryRadiusKm?: number;
+  operatingHoursJson?: Record<string, string>;
+  isActive: boolean;
+  launchDate?: string;
+  createdAt?: string;
 }
-
-// ── Config ───────────────────────────────────────────────
 
 export interface Config {
   key: string;
   value: string;
-  town_id: string;
-  updated_at: ISODate;
+  townId?: string;
+  updatedAt?: string;
 }
-
-// ── User ─────────────────────────────────────────────────
 
 export interface User {
   id: string;
-  /** E.164 format */
-  phone: E164Phone | null;
-  email: string | null;
-  name: string | null;
-  avatar_url: string | null;
+  phone?: E164Phone;
+  email?: string;
+  name?: string;
+  avatarUrl?: string;
   roles: UserRole[];
-  town_id: string | null;
-  referral_code: string | null;
-  referred_by: string | null;
-  created_at: ISODate;
+  townId?: string;
+  referralCode?: string;
+  referredBy?: string;
+  createdAt?: string;
 }
-
-// ── Buyer Profile ────────────────────────────────────────
 
 export interface BuyerProfile {
-  user_id: string;
-  locality: string | null;
-  default_address: DeliveryAddress | null;
-  saved_addresses_json: DeliveryAddress[];
-  updated_at: ISODate;
-}
-
-// ── Seller Profile ───────────────────────────────────────
-
-export type DeliveryModel =
-  | 'self_delivery'
-  | 'runner_assisted'
-  | 'self_pickup'
-  | 'made_to_order';
-
-export type SubscriptionPlan = 'free' | 'basic' | 'pro';
-
-export interface PunchCardSettings {
-  punches_required: number;
-  reward: string;
+  userId: string;
+  locality?: string;
+  defaultAddress?: DeliveryAddress;
+  savedAddresses: DeliveryAddress[];
+  updatedAt?: string;
 }
 
 export interface SellerProfile {
-  user_id: string;
-  store_name: string;
-  store_slug: string;
-  story: string | null;
-  village_origin: string | null;
-  category_ids: string[];
-  upi_id: string | null;
-  whatsapp: E164Phone | null;
-  delivery_model: DeliveryModel;
-  delivery_radius_km: number;
-  delivery_zone_polygon: GeoJSON | null;
-  /** Minimum order amount in paise */
-  min_order_amount: Paise;
-  /** Delivery fee in paise */
-  delivery_fee: Paise;
-  subscription_plan: SubscriptionPlan;
-  subscription_expires_at: ISODate | null;
-  commission_rate: number;
-  is_approved: boolean;
-  is_active: boolean;
-  /** Total earnings in paise */
-  total_earnings: Paise;
-  punch_card_settings_json: PunchCardSettings;
-  onboarded_at: ISODate;
-  updated_at: ISODate;
+  userId: string;
+  storeName: string;
+  storeSlug: string;
+  story?: string;
+  villageOrigin?: string;
+  categoryIds: string[];
+  upiId?: string;
+  whatsapp?: E164Phone;
+  deliveryModel: 'self_delivery' | 'runner_assisted' | 'self_pickup' | 'made_to_order';
+  deliveryRadiusKm?: number;
+  deliveryZonePolygon?: Record<string, unknown>;
+  minOrderAmount?: Paise;
+  deliveryFee?: Paise;
+  subscriptionPlan: 'free' | 'basic' | 'pro';
+  subscriptionExpiresAt?: string;
+  commissionRate?: number;
+  isApproved: boolean;
+  isActive: boolean;
+  totalEarnings: Paise;
+  punchCardSettingsJson?: Record<string, unknown>;
+  onboardedAt?: string;
+  updatedAt?: string;
 }
-
-// ── Runner Profile ───────────────────────────────────────
-
-export type VehicleType = 'bike' | 'scooter' | 'car' | 'foot';
 
 export interface RunnerProfile {
-  user_id: string;
-  vehicle_type: VehicleType;
-  is_online: boolean;
-  current_lat: number | null;
-  current_lng: number | null;
-  /** Earnings this week in paise */
-  earnings_this_week: Paise;
-  total_deliveries: number;
-  rating: number;
-  updated_at: ISODate;
+  userId: string;
+  vehicleType: 'bike' | 'scooter' | 'car' | 'foot';
+  isOnline: boolean;
+  currentLat?: number;
+  currentLng?: number;
+  earningsThisWeek: Paise;
+  totalDeliveries: number;
+  rating?: number;
+  updatedAt?: string;
 }
-
-// ── Warehouse Staff ──────────────────────────────────────
-
-export type WarehouseRole = 'picker' | 'packer' | 'manager';
 
 export interface WarehouseStaff {
-  user_id: string;
-  role: WarehouseRole;
-  shift_json: Record<string, unknown>;
-  town_id: string;
-  created_at: ISODate;
+  userId: string;
+  role: 'picker' | 'packer' | 'manager';
+  shiftJson?: Record<string, unknown>;
+  townId?: string;
+  createdAt?: string;
 }
-
-// ── Product Category ─────────────────────────────────────
-
-export type CategoryType = 'dark_store' | 'marketplace' | 'both';
 
 export interface ProductCategory {
   id: string;
   name: string;
   slug: string;
-  icon_url: string | null;
-  type: CategoryType;
-  sort_order: number;
-  created_at: ISODate;
+  iconUrl?: string;
+  type: 'dark_store' | 'marketplace' | 'both';
+  sortOrder?: number;
+  createdAt?: string;
 }
-
-// ── SKU (Dark Store) ─────────────────────────────────────
-
-export type UnitType =
-  | 'piece'
-  | 'kg'
-  | 'g'
-  | 'litre'
-  | 'ml'
-  | 'pack'
-  | 'dozen'
-  | 'box';
 
 export interface SKU {
   id: string;
-  town_id: string;
+  townId: string;
   name: string;
-  category_id: string | null;
-  brand: string | null;
-  unit: UnitType;
-  /** Purchase price in paise */
-  purchase_price: Paise;
-  /** Selling price in paise */
-  selling_price: Paise;
-  /** MRP in paise */
+  categoryId?: string;
+  brand?: string;
+  unit: 'piece' | 'kg' | 'g' | 'litre' | 'ml' | 'pack' | 'dozen' | 'box';
+  purchasePrice: Paise;
+  sellingPrice: Paise;
   mrp: Paise;
   images: string[];
-  description: string | null;
-  shelf_code: string | null;
-  low_stock_threshold: number;
-  reorder_quantity: number;
-  is_active: boolean;
-  created_at: ISODate;
-  updated_at: ISODate;
+  description?: string;
+  shelfCode?: string;
+  lowStockThreshold?: number;
+  reorderQuantity?: number;
+  isActive: boolean;
+  createdAt?: string;
+  updatedAt?: string;
 }
-
-// ── Inventory ────────────────────────────────────────────
 
 export interface Inventory {
-  sku_id: string;
-  town_id: string;
-  quantity_in_stock: number;
-  last_restocked_at: ISODate | null;
-  updated_at: ISODate;
-}
-
-// ── Purchase Order ───────────────────────────────────────
-
-export type PurchaseOrderStatus =
-  | 'pending'
-  | 'confirmed'
-  | 'received'
-  | 'cancelled';
-
-export interface PurchaseOrderItem {
-  sku_id: string;
-  sku_name: string;
-  quantity: number;
-  /** Unit cost in paise */
-  unit_cost: Paise;
+  skuId: string;
+  townId: string;
+  quantityInStock: number;
+  lastRestockedAt?: string;
+  updatedAt?: string;
 }
 
 export interface PurchaseOrder {
   id: string;
-  town_id: string;
-  supplier_name: string;
-  items_json: PurchaseOrderItem[];
-  status: PurchaseOrderStatus;
-  expected_date: string | null;
-  received_at: ISODate | null;
-  created_by: string | null;
-  created_at: ISODate;
-  updated_at: ISODate;
+  townId: string;
+  supplierName: string;
+  itemsJson: Record<string, unknown>[];
+  status: 'pending' | 'confirmed' | 'received' | 'cancelled';
+  expectedDate?: string;
+  receivedAt?: string;
+  createdBy?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
-
-// ── Marketplace Product ──────────────────────────────────
-
-export type FulfillmentModel = DeliveryModel;
 
 export interface Product {
   id: string;
-  seller_id: string;
-  town_id: string;
+  sellerId: string;
+  townId: string;
   name: string;
-  category_id: string | null;
-  description: string | null;
-  story: string | null;
-  village_origin: string | null;
-  /** Price in paise */
+  categoryId?: string;
+  description?: string;
+  story?: string;
+  villageOrigin?: string;
   price: Paise;
-  unit: UnitType;
+  unit: string;
   images: string[];
-  stock_quantity: number;
-  is_made_to_order: boolean;
-  lead_time_days: number;
-  fulfillment_model: FulfillmentModel;
-  is_active: boolean;
-  is_approved: boolean;
-  total_sold: number;
-  created_at: ISODate;
-  updated_at: ISODate;
-}
-
-// ── Cart ─────────────────────────────────────────────────
-
-export type CartItemSource = 'dark_store' | 'seller';
-
-export interface CartItem {
-  id: string;
-  source: CartItemSource;
-  seller_id?: string;
-  /** SKU id (dark_store) or Product id (seller) */
-  item_id: string;
-  name: string;
-  image: string;
-  /** Unit price in paise */
-  price: Paise;
-  quantity: number;
-  unit: UnitType;
-}
-
-export interface Cart {
-  items: CartItem[];
-  /** Total amount in paise */
-  total: Paise;
-}
-
-// ── Order ─────────────────────────────────────────────────
-
-export type PaymentStatus =
-  | 'pending'
-  | 'paid'
-  | 'failed'
-  | 'refunded'
-  | 'partial_refund';
-
-export interface ParentOrder {
-  id: string;
-  buyer_id: string;
-  town_id: string;
-  /** Total amount in paise */
-  total_amount: Paise;
-  payment_status: PaymentStatus;
-  payment_id: string | null;
-  razorpay_order_id: string | null;
-  created_at: ISODate;
+  stockQuantity?: number;
+  isMadeToOrder: boolean;
+  leadTimeDays?: number;
+  fulfillmentModel: 'self_delivery' | 'runner_assisted' | 'self_pickup' | 'made_to_order';
+  isActive: boolean;
+  isApproved: boolean;
+  totalSold?: number;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export type OrderStatus =
@@ -337,158 +190,144 @@ export type OrderStatus =
   | 'cancelled'
   | 'refunded';
 
-export interface OrderItem {
-  item_id: string;
-  name: string;
-  quantity: number;
-  /** Unit price in paise */
-  unit_price: Paise;
-  /** Line total in paise */
-  total: Paise;
+export interface ParentOrder {
+  id: string;
+  buyerId: string;
+  townId: string;
+  totalAmount: Paise;
+  paymentStatus: 'pending' | 'paid' | 'failed' | 'refunded' | 'partial_refund';
+  paymentId?: string;
+  razorpayOrderId?: string;
+  createdAt?: string;
 }
 
 export interface SubOrder {
   id: string;
-  parent_order_id: string;
+  parentOrderId: string;
   source: 'dark_store' | 'seller';
-  seller_id: string | null;
-  runner_id: string | null;
+  sellerId?: string;
+  runnerId?: string;
   status: OrderStatus;
-  items_json: OrderItem[];
-  /** Subtotal in paise */
+  itemsJson: Record<string, unknown>[];
   subtotal: Paise;
-  /** Delivery fee in paise */
-  delivery_fee: Paise;
-  delivery_address_json: DeliveryAddress;
-  notes: string | null;
-  estimated_delivery_at: ISODate | null;
-  delivered_at: ISODate | null;
-  created_at: ISODate;
-  updated_at: ISODate;
+  deliveryFee: Paise;
+  deliveryAddress: DeliveryAddress;
+  notes?: string;
+  estimatedDeliveryAt?: string;
+  deliveredAt?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface OrderStatusHistory {
   id: string;
-  sub_order_id: string;
+  subOrderId: string;
   status: OrderStatus;
-  changed_by: string | null;
-  changed_at: ISODate;
-  note: string | null;
+  changedBy?: string;
+  changedAt?: string;
+  note?: string;
 }
 
-// ── Runner Location ───────────────────────────────────────
-
-export interface RunnerLocationLog {
+export interface CartItem {
   id: string;
-  runner_id: string;
-  sub_order_id: string | null;
-  lat: number;
-  lng: number;
-  recorded_at: ISODate;
+  source: 'dark_store' | 'seller';
+  name: string;
+  quantity: number;
+  unit?: string;
+  price: Paise;
+  sellerId?: string;
+  imageUrl?: string;
 }
 
-// ── Review ────────────────────────────────────────────────
+export interface Cart {
+  items: CartItem[];
+  subtotal: Paise;
+  deliveryFee: Paise;
+  total: Paise;
+}
 
 export interface Review {
   id: string;
-  sub_order_id: string;
-  buyer_id: string;
-  seller_id: string | null;
-  product_quality_rating: number | null;
-  freshness_rating: number | null;
-  packaging_rating: number | null;
-  communication_rating: number | null;
-  overall_rating: number;
-  comment: string | null;
-  locality: string | null;
-  is_verified_purchase: boolean;
-  created_at: ISODate;
+  subOrderId: string;
+  buyerId: string;
+  sellerId?: string;
+  productQualityRating?: number;
+  freshnessRating?: number;
+  packagingRating?: number;
+  communicationRating?: number;
+  overallRating: number;
+  comment?: string;
+  locality?: string;
+  isVerifiedPurchase: boolean;
+  createdAt?: string;
 }
-
-// ── Seller Story ──────────────────────────────────────────
-
-export type MediaType = 'image' | 'video';
 
 export interface SellerStory {
   id: string;
-  seller_id: string;
-  media_url: string;
-  media_type: MediaType;
-  caption: string | null;
-  created_at: ISODate;
-  expires_at: ISODate;
-  view_count: number;
+  sellerId: string;
+  mediaUrl: string;
+  mediaType: 'image' | 'video';
+  caption?: string;
+  createdAt?: string;
+  expiresAt?: string;
+  viewCount?: number;
 }
-
-// ── Punch Card ────────────────────────────────────────────
 
 export interface PunchCard {
   id: string;
-  buyer_id: string;
-  seller_id: string;
-  punch_count: number;
-  reward_description: string | null;
-  last_punched_at: ISODate | null;
-  redeemed_count: number;
-  created_at: ISODate;
+  buyerId: string;
+  sellerId: string;
+  punchCount: number;
+  rewardDescription?: string;
+  lastPunchedAt?: string;
+  redeemedCount?: number;
+  createdAt?: string;
 }
-
-// ── Referral Code ─────────────────────────────────────────
-
-export type ReferralType = 'buyer' | 'seller';
 
 export interface ReferralCode {
   code: string;
-  user_id: string;
-  type: ReferralType;
-  rewards_given: number;
-  created_at: ISODate;
+  userId: string;
+  type: 'buyer' | 'seller';
+  rewardsGiven: number;
+  createdAt?: string;
 }
-
-// ── Featured Listing ──────────────────────────────────────
-
-export type FeaturedListingType = 'category_pin' | 'home_banner';
 
 export interface FeaturedListing {
   id: string;
-  seller_id: string;
-  product_id: string | null;
-  type: FeaturedListingType;
-  start_at: ISODate;
-  end_at: ISODate;
-  /** Amount paid in paise */
-  amount_paid: Paise;
-  is_active: boolean;
-  created_at: ISODate;
+  sellerId: string;
+  productId?: string;
+  type: 'category_pin' | 'home_banner';
+  startAt: string;
+  endAt: string;
+  amountPaid: Paise;
+  isActive: boolean;
+  createdAt?: string;
 }
-
-// ── Town Ambassador ───────────────────────────────────────
 
 export interface TownAmbassador {
-  user_id: string;
-  town_id: string;
-  commission_rate: number;
-  /** Total earned in paise */
-  total_earned: Paise;
-  joined_at: ISODate;
+  userId: string;
+  townId: string;
+  commissionRate: number;
+  totalEarned: Paise;
+  joinedAt?: string;
 }
-
-// ── Notification ──────────────────────────────────────────
 
 export interface Notification {
   id: string;
-  user_id: string;
+  userId: string;
   type: string;
   title: string;
   body: string;
-  data_json: Record<string, unknown>;
-  read_at: ISODate | null;
-  created_at: ISODate;
+  dataJson?: Record<string, unknown>;
+  readAt?: string;
+  createdAt?: string;
 }
 
-// ── GeoJSON (minimal) ─────────────────────────────────────
-
-export interface GeoJSON {
-  type: string;
-  coordinates: unknown;
+export interface RunnerLocationLog {
+  id: string;
+  runnerId: string;
+  subOrderId?: string;
+  lat: number;
+  lng: number;
+  recordedAt?: string;
 }

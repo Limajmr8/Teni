@@ -16,5 +16,9 @@
   },
   "devDependencies": {
     "typescript": "^5.4.5"
-  }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
