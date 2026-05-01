@@ -1,8 +1,18 @@
 "use client";
 
+import { useState } from "react";
 import { InteractiveCheckout } from "@/components/ui/interactive-checkout";
 
 export default function CheckoutFancyPage() {
+    const [loading, setLoading] = useState(false);
+
+    const handleCheckout = async () => {
+        setLoading(true);
+        // Simulate checkout
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        setLoading(false);
+    };
+
     return (
         <div className="min-h-screen bg-neutral-50 dark:bg-black py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
@@ -15,7 +25,7 @@ export default function CheckoutFancyPage() {
                     </p>
                 </div>
                 
-                <InteractiveCheckout />
+                <InteractiveCheckout onCheckout={handleCheckout} loading={loading} />
             </div>
         </div>
     );
