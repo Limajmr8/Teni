@@ -3,26 +3,26 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@bazar/shared/src/supabase";
-import { ArrowLeft, Phone, ShieldCheck, ArrowRight, Loader2 } from "lucide-react";
+import { ArrowLeft, Mail, ShieldCheck, ArrowRight, Loader2 } from "lucide-react";
 
 export default function Login() {
-  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
-  const [step, setStep] = useState(1); // 1: Phone, 2: OTP
+  const [step, setStep] = useState(1); // 1: Email, 2: OTP
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
 
   const handleSendOTP = async () => {
-    if (!phone.startsWith("+91")) {
-      setError("Please include +91 prefix");
+    if (!email.includes("@")) {
+      setError("Please enter a valid email address");
       return;
     }
     setLoading(true);
     setError("");
     
     const { error } = await supabase.auth.signInWithOtp({
-      phone: phone,
+      email: email,
     });
 
     if (error) {
@@ -38,9 +38,9 @@ export default function Login() {
     setError("");
     
     const { error } = await supabase.auth.verifyOtp({
-      phone,
+      email,
       token: otp,
-      type: 'sms',
+      type: 'email',
     });
 
     if (error) {
@@ -52,7 +52,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-white p-8 flex flex-col">
+    <div className="min-h-screen bg-white p-8 flex flex-col font-sans">
       <header className="mb-12">
         <button onClick={() => router.back()} className="p-2 -ml-2 hover:bg-neutral-100 rounded-full">
           <ArrowLeft className="w-6 h-6" />
@@ -61,9 +61,9 @@ export default function Login() {
 
       <div className="flex-1 space-y-8">
         <div className="space-y-2">
-          <h1 className="text-3xl font-black">{step === 1 ? "Welcome to TENI" : "Verify Number"}</h1>
+          <h1 className="text-3xl font-black">{step === 1 ? "Welcome to TENI" : "Verify Email"}</h1>
           <p className="text-neutral-500 font-medium">
-            {step === 1 ? "Enter your phone number to continue" : `We sent a code to ${phone}`}
+            {step === 1 ? "Enter your email address to continue" : `We sent a code to ${email}`}
           </p>
         </div>
 
@@ -76,24 +76,26 @@ export default function Login() {
         <div className="space-y-4">
           {step === 1 ? (
             <div className="relative">
-              <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400" />
+              <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400" />
               <input 
-                type="tel" 
-                placeholder="+91 00000 00000" 
+                type="email" 
+                placeholder="your@email.com" 
                 className="w-full pl-12 pr-4 py-4 bg-neutral-100 rounded-2xl font-bold text-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && handleSendOTP()}
               />
             </div>
           ) : (
             <div className="relative">
               <ShieldCheck className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400" />
               <input 
-                type="number" 
+                type="text" 
                 placeholder="6-digit code" 
                 className="w-full pl-12 pr-4 py-4 bg-neutral-100 rounded-2xl font-bold text-lg tracking-[0.5em] focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 value={otp}
                 onChange={(e) => setOtp(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && handleVerifyOTP()}
               />
             </div>
           )}
@@ -101,13 +103,13 @@ export default function Login() {
           <button 
             onClick={step === 1 ? handleSendOTP : handleVerifyOTP}
             disabled={loading}
-            className="w-full btn-primary py-4 rounded-2xl flex items-center justify-center gap-2 text-lg"
+            className="w-full btn-primary py-4 rounded-2xl flex items-center justify-center gap-2 text-lg uppercase tracking-wide font-black"
           >
             {loading ? (
               <Loader2 className="w-6 h-6 animate-spin" />
             ) : (
               <>
-                {step === 1 ? "SEND OTP" : "VERIFY & LOGIN"}
+                {step === 1 ? "SEND CODE" : "VERIFY & LOGIN"}
                 <ArrowRight className="w-5 h-5" />
               </>
             )}
@@ -117,16 +119,16 @@ export default function Login() {
         {step === 2 && (
           <button 
             onClick={() => setStep(1)}
-            className="w-full text-center text-sm font-bold text-neutral-400 uppercase tracking-widest"
+            className="w-full text-center text-sm font-bold text-neutral-400 uppercase tracking-widest hover:text-neutral-600 transition-colors"
           >
-            Change Number
+            Change Email
           </button>
         )}
       </div>
 
       <footer className="text-center text-xs text-neutral-400 font-medium pb-8">
         By continuing, you agree to TENI's <br />
-        <span className="underline">Terms of Service</span> and <span className="underline">Privacy Policy</span>.
+        <span className="underline cursor-pointer">Terms of Service</span> and <span className="underline cursor-pointer">Privacy Policy</span>.
       </footer>
     </div>
   );
