@@ -12,7 +12,7 @@ export async function sendWhatsAppMessage(
     return { success: false, error: "Missing config" };
   }
 
-  // Format phone number to E.164 if not already (assuming India for BAZAR)
+  // Format phone number to E.164 if not already (assuming India for TENI)
   let to = phoneNumber.replace(/\D/g, "");
   if (to.length === 10) {
     to = "91" + to;
@@ -27,7 +27,7 @@ export async function sendWhatsAppMessage(
       type: "text",
       text: message
     }));
-    params.append('src.name', 'BAZAR');
+    params.append('src.name', 'TENI');
 
     const response = await fetch(GUPSHUP_API_URL, {
       method: "POST",
@@ -80,7 +80,7 @@ export async function sendWhatsAppTemplate(
       id: templateId,
       params: templateParams
     }));
-    params.append('src.name', 'BAZAR');
+    params.append('src.name', 'TENI');
 
     const response = await fetch(GUPSHUP_API_URL, {
       method: "POST",

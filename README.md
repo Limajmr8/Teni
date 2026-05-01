@@ -1,6 +1,6 @@
-# BAZAR - Running the Platform
+# TENI - Running the Platform
 
-BAZAR is a dual-engine hyperlocal commerce platform built with a Turborepo monorepo. Follow these steps to get the entire ecosystem running on your machine.
+TENI is a dual-engine hyperlocal commerce platform built with a Turborepo monorepo. Follow these steps to get the entire ecosystem running on your machine.
 
 ## 1. Prerequisites
 - **Node.js**: v18 or higher

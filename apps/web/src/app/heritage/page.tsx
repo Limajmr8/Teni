@@ -90,7 +90,7 @@ const HERITAGE_PRODUCTS = [
     compareAt: null,
     category: "Smoked & Cured Meats",
     giTag: null,
-    giStatus: "bazar_verified",
+    giStatus: "teni_verified",
     image: "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?q=80&w=400&auto=format&fit=crop",
     village: "Zunheboto",
     rating: 4.8,
@@ -104,7 +104,7 @@ const HERITAGE_PRODUCTS = [
     compareAt: 39900,
     category: "Preserves & Pickles",
     giTag: null,
-    giStatus: "bazar_verified",
+    giStatus: "teni_verified",
     image: "https://images.unsplash.com/photo-1607530542923-dc0a58811db0?q=80&w=400&auto=format&fit=crop",
     village: "Mokokchung Town",
     rating: 4.7,
@@ -132,7 +132,7 @@ const HERITAGE_PRODUCTS = [
     compareAt: 349900,
     category: "Bamboo & Woodcraft",
     giTag: null,
-    giStatus: "bazar_verified",
+    giStatus: "teni_verified",
     image: "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=400&auto=format&fit=crop",
     village: "Zunheboto",
     rating: 4.9,
@@ -201,7 +201,7 @@ export default function HeritagePage() {
       const { data: artisans } = await supabase
         .from('artisan_profiles')
         .select('*')
-        .eq('is_bazar_verified', true)
+        .eq('is_teni_verified', true)
         .limit(10);
         
       if (artisans && artisans.length > 0) {
@@ -214,7 +214,7 @@ export default function HeritagePage() {
           portrait: a.portrait_url || "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop",
           products: a.total_products_sold,
           rating: a.avg_rating,
-          verified: a.is_bazar_verified,
+          verified: a.is_teni_verified,
         })));
       }
 

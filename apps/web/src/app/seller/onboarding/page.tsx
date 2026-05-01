@@ -69,8 +69,8 @@ export default function SellerOnboarding() {
       
       // Store the seller ID for dashboard access
       if (typeof window !== 'undefined') {
-        localStorage.setItem('bazar_demo_seller_id', userId);
-        localStorage.setItem('bazar_demo_store_slug', storeSlug);
+        localStorage.setItem('teni_demo_seller_id', userId);
+        localStorage.setItem('teni_demo_store_slug', storeSlug);
       }
       
       setStep(5);

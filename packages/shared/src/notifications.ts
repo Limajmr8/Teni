@@ -26,10 +26,10 @@ export const sendWhatsAppMessage = async (phone: string, templateName: string, p
   }
 };
 
-// Templates for BAZAR
+// Templates for TENI
 export const NOTIFICATION_TEMPLATES = {
-  ORDER_PLACED: "bazar_order_placed_v1",
-  SELLER_NEW_ORDER: "bazar_seller_new_order_v1",
-  RUNNER_ASSIGNED: "bazar_runner_assigned_v1",
-  DELIVERY_SUCCESS: "bazar_delivery_success_v1"
+  ORDER_PLACED: "teni_order_placed_v1",
+  SELLER_NEW_ORDER: "teni_seller_new_order_v1",
+  RUNNER_ASSIGNED: "teni_runner_assigned_v1",
+  DELIVERY_SUCCESS: "teni_delivery_success_v1"
 };

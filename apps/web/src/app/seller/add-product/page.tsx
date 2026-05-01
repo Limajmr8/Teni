@@ -88,7 +88,7 @@ export default function AddProduct() {
     let sellerId = user?.id;
     
     if (!sellerId && typeof window !== 'undefined') {
-      sellerId = localStorage.getItem('bazar_demo_seller_id') || undefined;
+      sellerId = localStorage.getItem('teni_demo_seller_id') || undefined;
     }
     
     if (!sellerId) {
@@ -248,7 +248,7 @@ export default function AddProduct() {
           </div>
         </div>
 
-        {/* Story Section - MANDATORY for BAZAR */}
+        {/* Story Section - MANDATORY for TENI */}
         <div className="bg-emerald-50 border border-emerald-100 p-4 rounded-2xl shadow-sm space-y-3 relative overflow-hidden">
           <div className="flex items-center gap-2">
             <Info size={16} className="text-emerald-600" />

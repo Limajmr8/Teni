@@ -36,7 +36,7 @@ export const startLocationTracking = async () => {
     timeInterval: 10000, // 10 seconds
     distanceInterval: 10,
     foregroundService: {
-      notificationTitle: "BAZAR Runner",
+      notificationTitle: "TENI Runner",
       notificationBody: "You are online and tracking location.",
     },
   });

@@ -1,6 +1,6 @@
-# BAZAR Platform - Future Roadmap
+# TENI Platform - Future Roadmap
 
-This document lists deferred features and enhancements for the BAZAR platform.
+This document lists deferred features and enhancements for the TENI platform.
 
 ## 1. AI & Intelligence
 - **AI Recommendations:** Personalized product suggestions based on buyer behavior and seasonal trends in Mokokchung.

@@ -70,7 +70,7 @@ export default function ArtisanProfilePage() {
           ],
           workshop_lat: 26.3267,
           workshop_lng: 94.5244,
-          is_bazar_verified: true,
+          is_teni_verified: true,
           verified_at: "2026-03-15",
           pm_vishwakarma_status: "toolkit_received",
           total_products_sold: 156,
@@ -81,7 +81,7 @@ export default function ArtisanProfilePage() {
         setProducts([
           { id: "1", name: "Ao Naga Warrior Shawl", selling_price: 499900, images: ["https://images.unsplash.com/photo-1583743089695-4b816a340f82?q=80&w=300&auto=format&fit=crop"], gi_tag_status: "registered" },
           { id: "5", name: "Naga Tree Tomato Chutney", selling_price: 34900, images: ["https://images.unsplash.com/photo-1592924357228-91a4daadcfea?q=80&w=300&auto=format&fit=crop"], gi_tag_status: "registered" },
-          { id: "7", name: "Ceremonial Shoulder Cloth", selling_price: 349900, images: ["https://images.unsplash.com/photo-1558618666-fcd25c85f82e?q=80&w=300&auto=format&fit=crop"], gi_tag_status: "bazar_verified" },
+          { id: "7", name: "Ceremonial Shoulder Cloth", selling_price: 349900, images: ["https://images.unsplash.com/photo-1558618666-fcd25c85f82e?q=80&w=300&auto=format&fit=crop"], gi_tag_status: "teni_verified" },
         ]);
       }
       setLoading(false);
@@ -143,7 +143,7 @@ export default function ArtisanProfilePage() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              {artisan.is_bazar_verified && (
+              {artisan.is_teni_verified && (
                 <div className="absolute -bottom-1 -right-1 w-7 h-7 bg-amber-500 rounded-lg flex items-center justify-center border-2 border-heritage-950 shadow-lg">
                   <Shield className="w-4 h-4 text-white" />
                 </div>

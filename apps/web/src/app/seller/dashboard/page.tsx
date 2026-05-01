@@ -22,7 +22,7 @@ export default function SellerDashboard() {
       let sellerId = user?.id;
       
       if (!sellerId && typeof window !== 'undefined') {
-        sellerId = localStorage.getItem('bazar_demo_seller_id') || undefined;
+        sellerId = localStorage.getItem('teni_demo_seller_id') || undefined;
       }
 
       if (!sellerId) {
