@@ -10,7 +10,7 @@ export type OrderStatus =
 
 export type FulfillmentModel = 
   | 'self_delivery' 
-  | 'bazar_runner' 
+  | 'teni_runner' 
   | 'pickup_only';
 
 export type SellerPlan = 'starter' | 'pro';
