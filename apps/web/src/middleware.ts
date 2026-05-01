@@ -1,19 +1,29 @@
+import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
-  // Simplified role-based routing check
-  // In a real app, we would verify the Supabase JWT and extract roles
-  
+  const supabase = createMiddlewareClient({ req, res });
+
+  // Refresh session if expired - required for Server Components
+  const { data: { session } } = await supabase.auth.getSession();
+
   const path = req.nextUrl.pathname;
-  
-  // Protect seller routes
-  if (path.startsWith('/seller') && !path.includes('/login') && !path.includes('/onboarding')) {
-    // If not authenticated, redirect to login
-    // If authenticated but not seller, redirect to onboarding
+
+  // Protected routes
+  const isProtectedRoute = 
+    path.startsWith('/seller') || 
+    path.startsWith('/checkout') || 
+    path.startsWith('/order');
+
+  if (isProtectedRoute && !session) {
+    const redirectUrl = req.nextUrl.clone();
+    redirectUrl.pathname = '/login';
+    redirectUrl.searchParams.set(`redirectedFrom`, req.nextUrl.pathname);
+    return NextResponse.redirect(redirectUrl);
   }
-  
+
   return res;
 }
 

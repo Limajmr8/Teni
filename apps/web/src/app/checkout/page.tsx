@@ -1,18 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Script from "next/script";
 import { ArrowLeft, ShoppingCart, Info } from "lucide-react";
 import { supabase } from "@bazar/shared/src/supabase";
 import { useCart } from "@/context/CartContext";
 import { InteractiveCheckout, PaymentMethod } from "@/components/ui/interactive-checkout";
+import AddressForm, { DeliveryAddress } from "@/components/AddressForm";
+
 
 export default function Checkout() {
   const router = useRouter();
   const { cart, clearCart, subtotal } = useCart();
   const [loading, setLoading] = useState(false);
-  
+  const [deliveryAddress, setDeliveryAddress] = useState<DeliveryAddress | null>(null);
+
+  // Load saved address from localStorage
+  useEffect(() => {
+    const saved = localStorage.getItem('teni_delivery_address');
+    if (saved) {
+      try { setDeliveryAddress(JSON.parse(saved)); } catch {}
+    }
+  }, []);
+
+  // Save address on change
+  const handleAddressChange = (address: DeliveryAddress) => {
+    setDeliveryAddress(address);
+    localStorage.setItem('teni_delivery_address', JSON.stringify(address));
+  };
+
   const deliveryFee = subtotal >= 20000 ? 0 : 2000;
   const total = subtotal + deliveryFee;
 
@@ -25,12 +42,12 @@ export default function Checkout() {
         town_id: '11111111-1111-1111-1111-111111111111', // Mokokchung town ID
         total_amount: total,
         delivery_fee: deliveryFee,
-        delivery_address: {
-          name: "John Doe",
-          phone: "+919876543210",
-          line1: "Dilong Ward, House 42",
+        delivery_address: deliveryAddress || {
+          name: "Guest",
+          phone: "",
+          line1: "Mokokchung",
           locality: "Mokokchung",
-          landmark: "Near Ao Baptist Church",
+          landmark: "",
           lat: 26.3267,
           lng: 94.5244
         },
@@ -79,6 +96,10 @@ export default function Checkout() {
 
   const handlePayment = async (paymentMethod: PaymentMethod) => {
     if (cart.length === 0) return;
+    if (!deliveryAddress || !deliveryAddress.name || !deliveryAddress.phone || !deliveryAddress.line1) {
+      alert('Please fill in your delivery address (name, phone, and address are required)');
+      return;
+    }
     setLoading(true);
 
     if (paymentMethod === 'cod') {
@@ -193,6 +214,11 @@ export default function Checkout() {
         </div>
 
         <InteractiveCheckout onCheckout={handlePayment} loading={loading} />
+
+        {/* Delivery Address */}
+        <div className="px-4 mt-4">
+          <AddressForm onAddressChange={handleAddressChange} savedAddress={deliveryAddress} />
+        </div>
       </div>
     </div>
   );

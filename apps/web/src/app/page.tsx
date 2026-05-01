@@ -5,6 +5,7 @@ import { Search, MapPin, ShoppingCart, User, ChevronDown, Star, Sparkles, Clock,
 import { supabase } from "@bazar/shared/src/supabase";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/context/CartContext";
+import SearchOverlay from "@/components/SearchOverlay";
 
 export default function Home() {
   const router = useRouter();
@@ -13,6 +14,7 @@ export default function Home() {
   const [categories, setCategories] = useState<any[]>([]);
   const [sellers, setSellers] = useState<any[]>([]);
   const [products, setProducts] = useState<any[]>([]);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   const cartCount = cart.reduce((acc, i) => acc + i.quantity, 0);
 
@@ -75,13 +77,11 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="relative">
+        <div className="relative" onClick={() => setSearchOpen(true)}>
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-          <input 
-            type="text" 
-            placeholder='Search for "pork" or "eggs"' 
-            className="w-full pl-10 pr-4 py-3.5 bg-gray-100 rounded-xl text-sm font-medium text-gray-800 placeholder:text-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-300 transition-all shadow-inner"
-          />
+          <div className="w-full pl-10 pr-4 py-3.5 bg-gray-100 rounded-xl text-sm font-medium text-gray-500 cursor-pointer shadow-inner">
+            Search for &quot;pork&quot; or &quot;eggs&quot;
+          </div>
         </div>
       </header>
 
@@ -232,6 +232,8 @@ export default function Home() {
           </button>
         </nav>
       )}
+
+      <SearchOverlay isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
     </div>
   );
 }
