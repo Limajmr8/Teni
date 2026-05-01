@@ -61,7 +61,7 @@ export default function Login() {
 
       <div className="flex-1 space-y-8">
         <div className="space-y-2">
-          <h1 className="text-3xl font-black">{step === 1 ? "Welcome to BAZAR" : "Verify Number"}</h1>
+          <h1 className="text-3xl font-black">{step === 1 ? "Welcome to TENI" : "Verify Number"}</h1>
           <p className="text-neutral-500 font-medium">
             {step === 1 ? "Enter your phone number to continue" : `We sent a code to ${phone}`}
           </p>
@@ -125,7 +125,7 @@ export default function Login() {
       </div>
 
       <footer className="text-center text-xs text-neutral-400 font-medium pb-8">
-        By continuing, you agree to BAZAR's <br />
+        By continuing, you agree to TENI's <br />
         <span className="underline">Terms of Service</span> and <span className="underline">Privacy Policy</span>.
       </footer>
     </div>

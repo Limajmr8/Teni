@@ -105,7 +105,7 @@ export default function Checkout() {
         key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || 'dummy_key', // Uses dummy by default
         amount: total,
         currency: "INR",
-        name: "BAZAR",
+        name: "TENI",
         description: "Order Payment",
         order_id: orderId,
         handler: async function (response: any) {
@@ -187,7 +187,7 @@ export default function Checkout() {
           <div className="bg-emerald-50 text-emerald-700 rounded-xl p-3 flex items-start gap-2 border border-emerald-100">
             <Info className="w-4 h-4 mt-0.5 flex-shrink-0 text-emerald-600" />
             <p className="text-xs font-medium leading-relaxed">
-              Ordering from <span className="font-bold text-emerald-800">BAZAR Now</span> and <span className="font-bold text-emerald-800">Local Sellers</span>. Items may arrive in separate deliveries.
+              Ordering from <span className="font-bold text-emerald-800">TENI Now</span> and <span className="font-bold text-emerald-800">Local Sellers</span>. Items may arrive in separate deliveries.
             </p>
           </div>
         </div>

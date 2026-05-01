@@ -88,7 +88,7 @@ export default function AdminDashboard() {
         <div className="p-6">
           <div className="flex items-center gap-2 text-rose-600">
             <MapPin className="w-6 h-6" />
-            <h1 className="text-xl font-black tracking-tight text-gray-900">BAZAR HQ</h1>
+            <h1 className="text-xl font-black tracking-tight text-gray-900">TENI HQ</h1>
           </div>
         </div>
         <nav className="flex-1 px-4 space-y-1">

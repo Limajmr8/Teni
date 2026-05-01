@@ -7,7 +7,7 @@ import { CartProvider } from "@/context/CartContext";
 const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "BAZAR - Mokokchung's Hyperlocal Marketplace",
+  title: "TENI - Mokokchung's Hyperlocal Marketplace",
   description: "Get groceries in 15 mins and shop from local Mokokchung sellers.",
 };
 

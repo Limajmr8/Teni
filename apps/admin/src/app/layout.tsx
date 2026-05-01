@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Admin Panel | BAZAR",
-  description: "Dashboard for Bazar Operations.",
+  title: "Admin Panel | TENI",
+  description: "Dashboard for TENI Operations.",
 };
 
 export default function RootLayout({

@@ -38,7 +38,7 @@ export default function MilestoneCard({ sellerName, amount, period }: MilestoneC
     
     // Title
     ctx.font = 'black 60px Inter';
-    ctx.fillText('BAZAR MILESTONE', 540, 300);
+    ctx.fillText('TENI MILESTONE', 540, 300);
 
     // Seller Name
     ctx.font = 'black 120px Inter';
@@ -62,7 +62,7 @@ export default function MilestoneCard({ sellerName, amount, period }: MilestoneC
 
     // Logo Placeholder
     ctx.font = 'black 80px Inter';
-    ctx.fillText('BAZAR', 540, 1820);
+    ctx.fillText('TENI', 540, 1820);
 
   }, [sellerName, amount, period]);
 
@@ -70,7 +70,7 @@ export default function MilestoneCard({ sellerName, amount, period }: MilestoneC
     const canvas = canvasRef.current;
     if (!canvas) return;
     const link = document.createElement('a');
-    link.download = `bazar-milestone-${sellerName}.png`;
+    link.download = `teni-milestone-${sellerName}.png`;
     link.href = canvas.toDataURL();
     link.click();
   };

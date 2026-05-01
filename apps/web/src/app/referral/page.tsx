@@ -7,7 +7,7 @@ import { ArrowLeft, Gift, Share2, Copy, Users } from "lucide-react";
 export default function ReferralPage() {
   const router = useRouter();
   const [copied, setCopied] = useState(false);
-  const referralCode = "BAZAR-MOK24";
+  const referralCode = "TENI-MOK24";
 
   const handleCopy = () => {
     navigator.clipboard.writeText(referralCode);

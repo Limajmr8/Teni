@@ -197,7 +197,7 @@ export default function ArtisanProfilePage() {
             <CheckCircle className="w-5 h-5 text-amber-600" />
           </div>
           <div>
-            <h3 className="text-sm font-bold text-heritage-900">BAZAR Verified Artisan</h3>
+            <h3 className="text-sm font-bold text-heritage-900">TENI Verified Artisan</h3>
             <p className="text-xs text-heritage-500 mt-0.5">
               Verified on {artisan.verified_at ? new Date(artisan.verified_at).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" }) : 'March 2026'}
             </p>

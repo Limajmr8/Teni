@@ -234,7 +234,7 @@ export default function ProductDetail() {
              Product Details
           </h3>
           <p className="text-base text-neutral-600 leading-relaxed font-medium">
-            {product.description || 'No description available for this item. Guaranteed fresh and quality checked by BAZAR.'}
+            {product.description || 'No description available for this item. Guaranteed fresh and quality checked by TENI.'}
           </p>
         </div>
       </motion.div>

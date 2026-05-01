@@ -19,7 +19,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   // Load cart from localStorage on init
   useEffect(() => {
-    const savedCart = localStorage.getItem('bazar_cart');
+    const savedCart = localStorage.getItem('teni_cart');
     if (savedCart) {
       try {
         setCart(JSON.parse(savedCart));
@@ -31,7 +31,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   // Save cart to localStorage on change
   useEffect(() => {
-    localStorage.setItem('bazar_cart', JSON.stringify(cart));
+    localStorage.setItem('teni_cart', JSON.stringify(cart));
   }, [cart]);
 
   const addItem = (item: CartItem) => {

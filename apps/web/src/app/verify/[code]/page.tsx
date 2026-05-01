@@ -46,23 +46,23 @@ const MOCK_VERIFICATION = {
       icon: "user",
     },
     {
-      step: "BAZAR Quality Check",
+      step: "TENI Quality Check",
       date: "2026-04-15",
       description: "Inspected for weave consistency, dye quality, and pattern accuracy",
-      location: "BAZAR QC Hub, Mokokchung",
+      location: "TENI QC Hub, Mokokchung",
       icon: "check",
     },
     {
       step: "Packaging & Sealing",
       date: "2026-04-16",
       description: "Vacuum-sealed with Certificate of Authenticity and holographic seal",
-      location: "BAZAR Packaging Center",
+      location: "TENI Packaging Center",
       icon: "package",
     },
     {
       step: "Shipped",
       date: "2026-04-17",
-      description: "Dispatched via BAZAR Logistics — Insured transit",
+      description: "Dispatched via TENI Logistics — Insured transit",
       location: "Mokokchung → Destination",
       icon: "truck",
     },
@@ -147,7 +147,7 @@ export default function VerifyPage() {
           </div>
           <h1 className="text-2xl font-black text-white mb-1">Authentic Product</h1>
           <p className="text-sm text-emerald-100 font-medium">
-            This product is verified by BAZAR
+            This product is verified by TENI
           </p>
         </div>
       </div>

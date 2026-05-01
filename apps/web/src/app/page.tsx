@@ -115,12 +115,12 @@ export default function Home() {
         </div>
       </div>
 
-      {/* BAZAR Now Section (15 Min Delivery) */}
+      {/* Teni Now Section (15 Min Delivery) */}
       <div className="mt-4 px-4 space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Clock className="w-5 h-5 text-green-600" />
-            <h2 className="text-lg font-black text-gray-900">Bazar Now</h2>
+            <h2 className="text-lg font-black text-gray-900">Teni Now</h2>
             <span className="bg-green-100 text-green-700 text-[10px] font-black px-2 py-0.5 rounded ml-1">15 MINS</span>
           </div>
           <button className="text-rose-500 text-xs font-bold flex items-center">
@@ -220,7 +220,7 @@ export default function Home() {
         <nav className="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white border-t border-gray-100 px-6 py-3 flex justify-between items-center z-50">
           <button className="flex flex-col items-center gap-1 text-rose-600">
             <MapPin className="w-6 h-6" />
-            <span className="text-[10px] font-extrabold">Bazar</span>
+            <span className="text-[10px] font-extrabold">Teni</span>
           </button>
           <button onClick={() => router.push('/heritage')} className="flex flex-col items-center gap-1 text-gray-400 hover:text-gray-600">
             <Sparkles className="w-6 h-6" />

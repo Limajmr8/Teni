@@ -182,7 +182,7 @@ function GIBadge({ status, name }: { status: string; name?: string | null }) {
     <div className="inline-flex items-center gap-1 px-2 py-1 bg-heritage-50 border border-heritage-200 rounded-full">
       <Shield className="w-3 h-3 text-heritage-600" />
       <span className="text-[10px] font-bold text-heritage-800 uppercase tracking-wider">
-        BAZAR Verified
+        TENI Verified
       </span>
     </div>
   );
@@ -536,7 +536,7 @@ export default function HeritagePage() {
           <div className="flex items-center gap-1">
             <Shield className="w-4 h-4 text-amber-400" />
             <span className="text-[11px] font-bold text-heritage-200">
-              BAZAR Verified
+              TENI Verified
             </span>
           </div>
           <div className="w-px h-4 bg-heritage-700" />

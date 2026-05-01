@@ -72,7 +72,7 @@ export default function OrderTracking() {
             <div className="flex justify-between items-start">
               <div className="space-y-1">
                 <p className="text-[10px] font-black text-neutral-400 uppercase tracking-widest flex items-center gap-2">
-                  Package {idx + 1} <span className="w-1 h-1 bg-neutral-300 rounded-full" /> {order.source === 'dark_store' ? 'BAZAR Now' : 'Marketplace'}
+                  Package {idx + 1} <span className="w-1 h-1 bg-neutral-300 rounded-full" /> {order.source === 'dark_store' ? 'TENI Now' : 'Marketplace'}
                 </p>
                 <h3 className="text-xl font-black text-neutral-900">
                   {order.source === 'dark_store' ? 'Groceries' : 'Local Items'}

@@ -103,7 +103,7 @@ export default function SellerOnboarding() {
           <div className="space-y-6 animate-fade-in">
             <div className="space-y-2">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-50 text-emerald-700 text-xs font-bold rounded-full border border-emerald-100 mb-2">
-                <Sparkles className="w-3 h-3" /> Welcome to BAZAR
+                <Sparkles className="w-3 h-3" /> Welcome to TENI
               </div>
               <h1 className="text-3xl font-black leading-tight">Tell us about<br/>your store</h1>
               <p className="text-neutral-500 font-medium">Every seller in Mokokchung has a story.</p>
@@ -215,7 +215,7 @@ export default function SellerOnboarding() {
             </div>
             <div className="bg-emerald-50 p-4 rounded-2xl border border-emerald-100">
               <p className="text-xs font-bold text-emerald-800 leading-relaxed">
-                💡 <span className="font-black">Fintech Layer:</span> Every sale builds your BAZAR Credit Score — enabling micro-loans and insurance in the future.
+                💡 <span className="font-black">Fintech Layer:</span> Every sale builds your TENI Credit Score — enabling micro-loans and insurance in the future.
               </p>
             </div>
             <button onClick={handleNext} className="btn-primary w-full py-4">
@@ -266,7 +266,7 @@ export default function SellerOnboarding() {
               <p className="text-neutral-500 font-medium">Your store is pending admin approval.</p>
             </div>
             <div className="bg-neutral-100 p-4 rounded-xl font-mono text-sm break-all border border-neutral-200">
-              bazar.in/s/{formData.store_name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}
+              teni.in/s/{formData.store_name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}
             </div>
             <div className="space-y-3">
               <button 
